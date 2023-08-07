@@ -27,12 +27,12 @@ contract BonsaiStarterTest is BonsaiTest {
         // Deploy a new starter instance
         BonsaiStarter starter = new BonsaiStarter(
             IBonsaiRelay(MOCK_BONSAI_RELAY),
-            queryImageId('FIBONACCI'));
+            queryImageId('FACTORS'));
 
         // Anticipate a callback request to the relay
         vm.expectCall(address(MOCK_BONSAI_RELAY), abi.encodeWithSelector(IBonsaiRelay.requestCallback.selector));
         // Request the callback
-        starter.calculateFibonacci(128);
+        starter.calculateFactors(2,3);
 
         // Anticipate a callback invocation on the starter contract
         vm.expectCall(address(starter), abi.encodeWithSelector(BonsaiStarter.storeResult.selector));
@@ -40,8 +40,8 @@ contract BonsaiStarterTest is BonsaiTest {
         (bool success,) = relayCallback();
         require(success, "Callback failed");
 
-        // Validate the Fibonacci solution value
-        uint256 result = starter.fibonacci(128);
-        assertEq(result, uint256(407305795904080553832073954));
+        // Validate the Factors solution value
+        uint256 result = starter.factors(2,3);
+        assertEq(result, uint256(6));
     }
 }

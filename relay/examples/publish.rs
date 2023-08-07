@@ -20,7 +20,7 @@ async fn main() {
     )
     .expect("Failed to initialize the relay client");
 
-    // Initialize the input for the FIBONACCI guest.
+    // Initialize the input for the FACTORS guest.
     let input = ethabi::encode(&[ethers::abi::Token::Uint(args.number.into())]);
 
     // Create a CallbackRequest for your contract
@@ -32,7 +32,7 @@ async fn main() {
     let request = CallbackRequest {
         callback_contract: args.address,
         // you can use the command `solc --hashes contracts/BonsaiStarter.sol`
-        // to get the value for your actual contract (9f2275c0: storeResult(uint256,uint256))
+        // to get the value for your actual contract (9f2275c0: storeResult(bytes32,uint256))
         function_selector: [0x9f, 0x22, 0x75, 0xc0],
         gas_limit: 3000000,
         image_id: image_id.into(),
