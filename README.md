@@ -1,5 +1,7 @@
 # Bonsai Foundry Template
 
+Original source: https://github.com/risc0/bonsai-foundry-template.git changed to: Guest program is Factorials
+
 Starter template for writing an application using [Bonsai].
 
 This repository implements an application on Ethereum utilizing Bonsai as a coprocessor to the smart contract application.
